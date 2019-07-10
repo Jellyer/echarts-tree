@@ -320,18 +320,21 @@ var option = {
             layer.msg('请选择你的操作', {
                 time: 20000, //20s后自动关闭               
                 btn: ['修改', '删除', '关闭'],
-                yes: function () {
+                yes: function (index) {
+                    layer.close(index);
                     var name = prompt("请输入名称", params.name);
                     if (name != null && name != "") {
                         editData(treeData, params.data.id, name);
-                        resizeTree(myChart,treeData,params.data.parentId)
+                        resizeTree(myChart,treeData,params.data.parentId)                       
                     }
                 },
-                btn2:function () {                   
+                btn2:function (index) { 
+                    layer.close(index);                  
                     layer.msg('确定删除该项？', {
                         time: 5000, //20s后自动关闭   
                         btn: ['确定', '取消'],
-                        yes: function () {
+                        yes: function (index) {
+                            layer.close(index);
                             delData(treeData, params.data.id);
                             resizeTree(myChart,treeData,params.data.parentId)
                         },
